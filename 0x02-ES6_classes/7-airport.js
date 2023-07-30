@@ -33,7 +33,7 @@ export default class Airport {
   }
 
   // Default string description
-  toString() {
+  get [Symbol.toStringTag]() {
     return this._code;
   }
 }

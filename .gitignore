@@ -1,6 +1,7 @@
 # Ignore node_modules directory
 node_modules/
 0x00-ES6_basic/node_modules/
+0x01-ES6_promise/node_modules/
 # Ignore macOS specific files
 .DS_Store
 
@@ -14,6 +15,18 @@ node_modules/
 .idea/
 .vscode/
 .eslintrc.js
+0x00-ES6_basic/.eslintrc.js
+0x00-ES6_basic/babel.config.js
+0x00-ES6_basic/nodesource_setup.sh
+0x00-ES6_basic/package-lock.json
+0x00-ES6_basic/package.json
+
+0x01-ES6_promise/.eslintrc.js
+0x01-ES6_promise/babel.config.js
+0x01-ES6_promise/nodesource_setup.sh
+0x01-ES6_promise/package-lock.json
+0x01-ES6_promise/package.json
+0x01-ES6_promise/utils.js
 
 # Ignore build output
 build/

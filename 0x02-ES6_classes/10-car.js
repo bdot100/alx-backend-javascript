@@ -21,9 +21,12 @@ export default class Car {
   }
 
   // Method to clone the car
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
-    // Create a new instance of the Car class with the same attributes
-    const clonedCar = new Car(this._brand, this._motor, this._color);
-    return clonedCar;
+    const Species = this.constructor[Symbol.species];
+    return new Species();
   }
 }

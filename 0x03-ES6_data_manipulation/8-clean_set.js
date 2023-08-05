@@ -1,16 +1,20 @@
 export default function cleanSet(set, startString) {
+  // Result
+  const result = [];
+
   // catch edge cases
   if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
     return '';
   }
-  // Convert the set to an array to filter values
-  const setArray = Array.from(set);
 
-  // Filter the values that start with the specified startString
-  const filteredValues = setArray.filter((value) => value.startsWith(startString));
+  for (const value of set.values()) {
+    if (typeof value === 'string' && value.startsWith(startString)) {
+      const subStr = value.substring(startString.length);
 
-  // Join the filtered values using '-'
-  const resultString = filteredValues.join('-');
-
-  return resultString;
+      if (subStr && subStr !== value) {
+        result.push(subStr);
+      }
+    }
+  }
+  return result.join('-');
 }

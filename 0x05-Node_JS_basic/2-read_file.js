@@ -10,10 +10,10 @@ function countStudents(path) {
   try {
     // Read the CSV file synchronously
     const data = fs.readFileSync(path, 'utf8');
-    
+
     // Split the file content into lines
     const lines = data.split('\n');
-    
+
     // Extract the field names (first line of the CSV)
     const fields = lines[0].split(',');
 

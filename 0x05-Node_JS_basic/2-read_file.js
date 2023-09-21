@@ -1,55 +1,38 @@
+/* eslint-disable guard-for-in */
 const fs = require('fs');
 
-/**
- * Count the number of students in each field from a CSV database file.
- *
- * @param {string} path - The path to the CSV database file.
- * @throws {Error} Throws an error if the database file cannot be loaded.
- */
 function countStudents(path) {
   try {
-    // Read the CSV file synchronously
     const data = fs.readFileSync(path, 'utf8');
+    const lines = data.split('\n').filter(Boolean); // Filter out empty lines
 
-    // Split the file content into lines
-    const lines = data.split('\n');
+    if (lines.length === 0) {
+      throw new Error('Cannot load the database');
+    }
 
-    // Extract the field names (first line of the CSV)
-    const fields = lines[0].split(',');
-
-    // Create an object to store students by field
     const students = {};
 
-    // Initialize arrays for each field
-    fields.forEach((field) => {
-      students[field] = [];
-    });
+    for (const line of lines) {
+      const [firstName, lastName, age, field] = line.split(',');
 
-    // Process each line of student data
-    lines.slice(1).forEach((line) => {
-      if (line !== '') {
-        const values = line.split(',');
-        fields.forEach((field, index) => {
-          // Only consider non-empty values
-          if (values[index] !== undefined && values[index].trim() !== '') {
-            students[field].push(values[index].trim());
-          }
-        });
-      }
-    });
-
-    // Display the total number of students
-    console.log(`Number of students: ${students.Student.length}`);
-
-    // Display the number of students in each field and their names
-    for (const field in students) {
-      if (field !== 'Student') {
-        console.log(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
+      if (field in students) {
+        students[field].count += 1;
+        students[field].list.push(firstName);
+      } else {
+        students[field] = {
+          count: 1,
+          list: [firstName],
+        };
       }
     }
-  } catch (err) {
-    // Handle errors by throwing an informative message
-    throw new Error('Cannot load the database');
+
+    console.log(`Number of students: ${lines.length - 1}`); // Subtract 1 for the header
+    for (const field in students) {
+      const { count, list } = students[field];
+      console.log(`Number of students in ${field}: ${count}. List: ${list.join(', ')}`);
+    }
+  } catch (error) {
+    console.error(error.message);
   }
 }
 

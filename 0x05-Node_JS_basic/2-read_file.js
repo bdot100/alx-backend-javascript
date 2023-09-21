@@ -6,14 +6,14 @@ function countStudents(path) {
     const data = fs.readFileSync(path, 'utf8');
     const lines = data.split('\n').filter(Boolean); // Filter out empty lines
 
-    // if (lines.length === 0) {
-    //   throw new Error('Cannot load the database');
-    // }
+    if (lines.length === 0) {
+      throw new Error('Cannot load the database');
+    }
 
     const students = {};
 
     for (const line of lines) {
-      const [firstName, field] = line.split(',');
+      const [firstName, lastName, age, field] = line.split(',');
 
       if (field in students) {
         students[field].count += 1;

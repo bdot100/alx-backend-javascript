@@ -9,7 +9,7 @@ const app = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
 
   // Respond with "Hello Holberton School!" for any endpoint
-  res.end('Hello Holberton School!\n');
+  res.end('Hello Holberton School!');
 });
 
 // Listen on port 1245

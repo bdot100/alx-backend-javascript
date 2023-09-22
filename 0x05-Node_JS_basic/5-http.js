@@ -4,12 +4,14 @@ const fs = require('fs').promises;
 
 // Create an HTTP server
 const app = http.createServer(async (req, res) => {
+  // Set the status code
+  res.statusCode = 200;
   // Set the response headers for plain text
   res.setHeader('Content-Type', 'text/plain');
 
   // Handle different URL paths
   if (req.url === '/') {
-    res.end('Hello Holberton School!\n');
+    res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     try {
       const databasePath = process.argv[2];

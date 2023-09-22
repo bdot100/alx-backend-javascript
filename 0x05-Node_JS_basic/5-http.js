@@ -43,10 +43,10 @@ const app = http.createServer(async (req, res) => {
 
       // Respond with the list of students
       res.write('This is the list of our students');
-      res.write(`Number of students: ${lines.length - 1}\n`); // Subtract 1 for the header
+      res.write(`Number of students: ${lines.length - 1}`); // Subtract 1 for the header
       for (const field in students) {
         const { count, list } = students[field];
-        res.write(`Number of students in ${field}: ${count}. List: ${list.join(', ')}\n`);
+        res.write(`Number of students in ${field}: ${count}. List: ${list.join(', ')}`);
       }
 
       res.end();
@@ -56,7 +56,7 @@ const app = http.createServer(async (req, res) => {
     }
   } else {
     res.statusCode = 404; // Not Found
-    res.end('Not Found\n');
+    res.end('Not Found');
   }
 });
 

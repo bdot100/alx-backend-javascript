@@ -42,21 +42,21 @@ const app = http.createServer(async (req, res) => {
       }
 
       // Respond with the list of students
-      res.write('This is the list of our students');
-      res.write(`Number of students: ${lines.length - 1}`); // Subtract 1 for the header
+      res.write('This is the list of our students\n');
+      res.write(`Number of students: ${lines.length - 1}\n`); // Subtract 1 for the header
       for (const field in students) {
         const { count, list } = students[field];
-        res.write(`Number of students in ${field}: ${count}. List: ${list.join(', ')}`);
+        res.write(`Number of students in ${field}: ${count}. List: ${list.join(', ')}\n`);
       }
 
       res.end();
     } catch (error) {
       res.statusCode = 500; // Internal Server Error
-      res.end(error.message);
+      res.end('Cannot load the database');
     }
   } else {
     res.statusCode = 404; // Not Found
-    res.end('Not Found');
+    res.end('Cannot load the database');
   }
 });
 

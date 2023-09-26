@@ -1,6 +1,3 @@
-const calculateNumber = require("./0-calcul.js");
+const calculateNumber = require("./1-calcul.js");
 
-console.log(calculateNumber(1, 3))
-console.log(calculateNumber(1, 3.7))
-console.log(calculateNumber(1.2, 3.7))
-console.log(calculateNumber(1.5, 3.7))
+console.log(calculateNumber('DIVIDE', 4.5, 1.4))

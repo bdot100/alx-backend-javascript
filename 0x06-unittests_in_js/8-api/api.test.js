@@ -1,25 +1,28 @@
-const request = require('supertest');
-const app = require('./api');
+const request = require("request");
+const {describe, it} = require("mocha");
+const expect = require("chai").expect;
 
-describe('API Tests', () => {
-  it('Check Correct status code', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .end(done);
-  });
-
-  it('Check Correct result', (done) => {
-    request(app)
-      .get('/')
-      .expect('Welcome to the payment system')
-      .end(done);
-  });
-
-  it('Check Other?', (done) => {
-    request(app)
-      .get('/')
-      .expect('Content-Length', '29') // Ensure the Content-Length is equal to 29
-      .end(done);
-  });
+describe("Index page", function() {
+    const options = {
+	url: "http://localhost:7865/",
+	method: "GET"
+    }
+    it("check correct status code", function(done) {
+	request(options, function(err, res, body) {
+	    expect(res.statusCode).to.equal(200);
+	    done();
+	});
+    });
+    it("check correct content", function(done) {
+	request(options, function(err, res, body) {
+	    expect(body).to.contain("Welcome to the payment system");
+	    done();
+	});
+    });
+    it("check correct content length", function(done) {
+	request(options, function(err, res, body) {
+	    expect(res.headers['content-length']).to.equal('29');
+	    done();
+	});
+    });
 });

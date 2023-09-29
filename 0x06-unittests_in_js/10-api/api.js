@@ -26,8 +26,12 @@ app.get('/available_payments', (req, res) => {
   
 // New endpoint for POST /login
 app.post('/login', (req, res) => {
-  const { userName } = req.body;
-  res.status(200).send(`Welcome ${userName}`);
+  const  userName  = req.body.userName;
+  if (userName) {
+	res.status(200).send(`Welcome ${userName}`);
+    } else {
+	res.status(404).send();
+    }
 });
 
 app.listen(port, () => {
